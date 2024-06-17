@@ -11,7 +11,7 @@
         <h1 class="game-title">Nachtigall, 
             <br>ick hör dir
             <br>trapsen.</h1>
-            <img src="/images/title-image.png" alt="Start Image" class="title-image">
+        <img src="/images/title-image.png" alt="Start Image" class="title-image">
         <div class="intro-instructions">
             <p class="intro-text">“It was the nightingale, and not the lark” is what Shakespeare wrote in the 16th century – in literature, nightingale and skylark have been contestants for the most beautiful song since humans started writing about them. High time they settle their battle once and for all. Make them sing loud and clear – but beware of noisy objects flying by!</p>
             <div class="instructions">
@@ -23,7 +23,7 @@
                 </ul>
             </div>
         </div>
-        <button onclick="startGame()" class="start-button">START</button>
+        <button id="startButton" onclick="startGame()">START</button>
     </div>
 
     <div id="gameScreen" class="screen">
@@ -32,14 +32,14 @@
             ick hör dir 
             <br>trapsen.</h1>
         <div id="gameArea">
-            <!-- Game elements go here -->
+            <img src="/images/skylark_standing.png" alt="Skylark" id="skylark">
+            <img src="/images/nightingale.png" alt="Nightingale" id="nightingale">
         </div>
         <div id="gameStats">
             <p>Singing points: <span id="singingPoints">0</span></p>
             <p>Level: <span id="level">1</span></p>
             <p>Flying skills: <span id="flyingSkills">0</span></p>
         </div>
-        <button onclick="pauseGame()">Pause</button>
     </div>
 
     <div id="endScreen" class="screen">
