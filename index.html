@@ -3,11 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple JavaScript Game</title>
+    <title>Nachtigall, ick hör dir trapsen</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <div id="game-container">
+    <div id="startScreen" class="screen">
+        <h1 class="game-title">Nachtigall, 
+            <br>ick hör dir
+            <br>trapsen.</h1>
+        <div class="intro-instructions">
+            <p class="intro-text">“It was the nightingale, and not the lark” is what Shakespeare wrote in the 16th century – in literature, nightingale and skylark have been contestants for the most beautiful song since humans started writing about them. High time they settle their battle once and for all. Make them sing loud and clear – but beware of noisy objects flying by!</p>
+            <div class="instructions">
+                <ul>
+                    <li>↑ Arrow up – Make the lark jump</li>
+                    <li>← Arrow left – Make the lark move left</li>
+                    <li>→ Arrow right – Make the lark move right</li>
+                    <li>Shift key – Start to sing</li>
+                </ul>
+            </div>
+        </div>
+        <button onclick="startGame()">Start</button>
+    </div>
+
+    <div id="gameScreen" class="screen">
+        <h1 class="game-title">Nachtigall,
+            <br>
+            ick hör dir 
+            <br>trapsen.</h1>
+        <div id="gameArea">
+            <!-- Game elements go here -->
+        </div>
+        <div id="gameStats">
+            <p>Singing points: <span id="singingPoints">0</span></p>
+            <p>Level: <span id="level">1</span></p>
+            <p>Flying skills: <span id="flyingSkills">0</span></p>
+        </div>
+        <button onclick="pauseGame()">Pause</button>
+    </div>
+
+    <div id="endScreen" class="screen">
+        <h1 class="game-title">Nachtigall, 
+            <br>ick hör dir
+            <br>trapsen.</h1>
+        <h2>Well done!</h2>
+        <img src="/images/1.png" alt="End Image" class="main-image">
+        <p id="endMessage"></p>
+        <button onclick="restartGame()">Restart</button>
     </div>
 
     <script src="/js/script.js"></script>

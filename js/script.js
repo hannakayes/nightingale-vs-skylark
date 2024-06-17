@@ -1,42 +1,30 @@
-// Define variables
-let score = 0;
-let timeLeft = 30; // in seconds
-let timerId;
+document.addEventListener('DOMContentLoaded', function() {
+    showScreen('startScreen');
+});
 
-// Function to start the game
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.style.display = 'none';
+    });
+    document.getElementById(screenId).style.display = 'flex';
+}
+
 function startGame() {
-    score = 0;
-    timeLeft = 30;
-    updateScore();
-    updateTimer();
-    timerId = setInterval(updateTimer, 1000); // Update timer every second
+    showScreen('gameScreen');
+    // Initialize game variables and start the game logic
 }
 
-// Function to update the score
-function updateScore() {
-    document.getElementById('score').textContent = `Score: ${score}`;
+function pauseGame() {
+    // Implement pause functionality
 }
 
-// Function to update the timer
-function updateTimer() {
-    document.getElementById('timer').textContent = `Time left: ${timeLeft} seconds`;
-
-    if (timeLeft === 0) {
-        clearInterval(timerId);
-        alert(`Game over! Your final score is ${score}.`);
-    }
-
-    timeLeft--;
+function endGame() {
+    showScreen('endScreen');
+    // Display end game statistics
+    document.getElementById('endMessage').textContent = 'Your final scores...'; // Update with actual scores
 }
 
-// Function to handle click events
-function incrementScore() {
-    score++;
-    updateScore();
+function restartGame() {
+    showScreen('startScreen');
+    // Reset game variables and prepare for a new game
 }
-
-// Event listener for the button click
-document.getElementById('click-button').addEventListener('click', incrementScore);
-
-// Event listener for starting the game
-document.getElementById('start-button').addEventListener('click', startGame);
