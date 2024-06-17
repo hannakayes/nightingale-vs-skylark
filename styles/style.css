@@ -148,7 +148,7 @@ button {
 
 #skylark {
     position: absolute;
-    width: 150px; /* Adjust width as needed */
+    width: 100px; /* Adjust width as needed */
     left: 10px; /* Initial left position */
     top: 60%; /* Adjust top position */
 }
@@ -157,7 +157,7 @@ button {
 #nightingale {
     position: absolute;
     margin-top: 30%;
-    width: 150px;
+    width: 100px;
     right: 10px; /* Fix the nightingale to the right with a margin */
 }
 
