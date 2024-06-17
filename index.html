@@ -19,20 +19,17 @@
                     <li>↑ Arrow up – Make the lark jump</li>
                     <li>← Arrow left – Make the lark move left</li>
                     <li>→ Arrow right – Make the lark move right</li>
-                    <li>Shift key – Start to sing</li>
+                    <li>↓ Arrow down – Move down again</li>
                 </ul>
             </div>
         </div>
         <button id="startButton" onclick="startGame()">START</button>
     </div>
-
+    
     <div id="gameScreen" class="screen">
-        <h1 class="game-title">Nachtigall,
-            <br>
-            ick hör dir 
-            <br>trapsen.</h1>
+        <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
         <div id="gameArea">
-            <img src="/images/skylark_standing.png" alt="Skylark" id="skylark">
+            <img src="images/skylark_standing.png" alt="Skylark" id="skylark">
             <img src="/images/nightingale.png" alt="Nightingale" id="nightingale">
         </div>
         <div id="gameStats">
@@ -41,15 +38,11 @@
             <p>Flying skills: <span id="flyingSkills">0</span></p>
         </div>
     </div>
-
+    
     <div id="endScreen" class="screen">
-        <h1 class="game-title">Nachtigall, 
-            <br>ick hör dir
-            <br>trapsen.</h1>
-        <h2>Well done!</h2>
-        <img src="/images/1.png" alt="End Image" class="main-image">
-        <p id="endMessage"></p>
-        <button onclick="restartGame()">Restart</button>
+        <h1 class="game-title">Nachtigall, ick hör dir trapsen.</h1>
+        <div id="endMessage"></div>
+        <button onclick="restartGame()">RESTART</button>
     </div>
 
     <script src="/js/script.js"></script>

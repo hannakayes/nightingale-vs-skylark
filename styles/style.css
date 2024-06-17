@@ -127,7 +127,7 @@ button {
     margin-top: 10%;
     width: 60%;
     height: 60%;
-    background-color: #7A4A2B;
+    background-color: #92643C;
     border: 1px solid #D5F32F;
     border-radius: 20px;
     position: relative;
@@ -147,15 +147,18 @@ button {
 }
 
 #skylark {
-    margin-left: 10px;
-    margin-top: 30%;
-    width: 150px; /* Initial margin-left as described */
+    position: absolute;
+    width: 150px; /* Adjust width as needed */
+    left: 10px; /* Initial left position */
+    top: 60%; /* Adjust top position */
 }
 
+
 #nightingale {
-    margin-right: 10px; 
+    position: absolute;
     margin-top: 30%;
-    width: 150px;/* Initial margin-right as described */
+    width: 150px;
+    right: 10px; /* Fix the nightingale to the right with a margin */
 }
 
 
@@ -173,4 +176,27 @@ button {
 #endMessage {
     font-size: 24px;
     margin: 20px;
+}
+
+.element {
+    position: absolute;
+    width: 80px; /* Adjust width as needed */
+    height: 80px; /* Adjust height as needed */
+}
+
+/* Styling for each specific element */
+#boombox {
+    width: 100px;  /* Add specific styling for boombox.png */
+}
+
+#jackhammer {
+    width: 100px;/* Add specific styling for jackhammer.png */
+}
+
+#ambulance {
+    width: 100px; /* Add specific styling for ambulance.png */
+}
+
+#airplane {
+    width: 100px; /* Add specific styling for airplane.png */
 }
