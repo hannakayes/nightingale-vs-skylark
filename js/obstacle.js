@@ -20,11 +20,32 @@ function moveObstacles() {
         const topPosition = parseInt(obstacle.style.top);
         if (topPosition < gameArea.clientHeight) {
             obstacle.style.top = `${topPosition + 5}px`; // Move down
+            checkCollision(obstacle); // Check for collision with skylark
         } else {
             gameArea.removeChild(obstacle);
             obstacles.splice(obstacles.indexOf(obstacle), 1); // Remove obstacle from array
         }
     });
+}
+
+function checkCollision(obstacle) {
+    const skylarkRect = skylark.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
+
+    if (
+        skylarkRect.right > obstacleRect.left &&
+        skylarkRect.left < obstacleRect.right &&
+        skylarkRect.bottom > obstacleRect.top &&
+        skylarkRect.top < obstacleRect.bottom
+    ) {
+        handleCollision(obstacle);
+    }
+}
+
+function handleCollision(obstacle) {
+    gameStats.decrementLives(); // Decrement lives remaining
+    gameArea.removeChild(obstacle); // Remove obstacle from DOM
+    obstacles.splice(obstacles.indexOf(obstacle), 1); // Remove obstacle from array
 }
 
 function startObstacleGeneration() {

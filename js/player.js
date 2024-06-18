@@ -5,6 +5,7 @@ let isJumping = false;
 let isFlying = false;
 let jumpInterval; // Variable to store interval for jump animation
 let fallInterval; // Variable to store interval for falling animation
+const moveSpeed = 20; // Adjust movement speed here
 
 function initializePlayer() {
     skylark = document.getElementById('skylark');
@@ -19,18 +20,15 @@ function initializePlayer() {
 }
 
 function handleKeyDown(event) {
-    const step = 10; // Increase step for faster movement
     const gameAreaWidth = gameArea.clientWidth;
-    const gameAreaHeight = gameArea.clientHeight;
     const skylarkWidth = skylark.clientWidth;
-    const skylarkHeight = skylark.clientHeight;
 
     // Handle left and right movement
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         const direction = event.key === 'ArrowLeft' ? -1 : 1;
-        skylarkPosition.left = Math.max(0, Math.min(gameAreaWidth - skylarkWidth, skylarkPosition.left + direction * step));
+        skylarkPosition.left += direction * moveSpeed; // Adjust position based on moveSpeed
+        skylarkPosition.left = Math.max(0, Math.min(gameAreaWidth - skylarkWidth, skylarkPosition.left));
         skylark.style.left = skylarkPosition.left + 'px';
-        return;
     }
 
     // Handle up and down movement

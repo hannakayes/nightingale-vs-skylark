@@ -34,7 +34,7 @@
             <img src="/images/nightingale.png" alt="Nightingale" id="nightingale">
         </div>
         <div id="gameStats">
-            <p>Singing points: <span id="singingPoints">0</span></p>
+            <p>Lives left: <span id="singingPoints">3</span></p>
             <p>Level: <span id="level">1</span></p>
             <p>Flying skills: <span id="flyingSkills">0</span></p>
         </div>
@@ -44,10 +44,25 @@
         <button id="restartButton" class="restart-button">RESTART</button>
     </div>
 
-    <script src="/js/"></script>
     <script src="/js/player.js"></script>
     <script src="/js/obstacle.js"></script>
     <script src="/js/game.js"></script>
     <script src="/js/script.js"></script>
+
+    <script>
+        // Inline script to ensure IDs are accessible by game.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Confirm IDs used in game.js are available
+            const singingPoints = document.getElementById('singingPoints'); // For lives remaining
+            const level = document.getElementById('level'); // For current level
+            const restartButton = document.getElementById('restartButton'); // Restart button
+
+            // Ensure obstaclePass() is called properly
+            function obstaclePass() {
+                // Implement obstacle passing logic if needed
+                // This function should be invoked when an obstacle passes through #gameArea
+            }
+        });
+    </script>
 </body>
 </html>
