@@ -33,8 +33,14 @@
             <img src="images/skylark_standing.png" alt="Skylark" id="skylark">
         </div>
         <div id="nightingaleContainer">
-            <img src="images/nightingale.png" alt="Nightingale" id="nightingale">
+            <img src="images/nightingale.png" alt="Nightingale" id="nightingale" onclick="toggleNightingaleSong()">
         </div>
+        
+        <audio id="nightingaleAudio">
+            <source src="sounds/nightingale_song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
         <div id="gameStats">
             <p>Lives left: <span id="singingPoints">3</span></p>
             <p>Level: <span id="level">1</span></p>
