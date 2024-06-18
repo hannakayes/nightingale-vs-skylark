@@ -1,8 +1,11 @@
+// game.js
+
 // Define gameAreaHeight if it's supposed to be a constant
 const gameAreaHeight = 600; // Replace with your actual height value
 
 let gameStarted = false;
-let obstaclesPassedCount = 0; // Track how many obstacles have passed
+let arrowClicksSum = 0; // Track total arrow clicks sum
+let startTime = null; // Variable to store the start time
 
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -17,7 +20,9 @@ function startGame() {
         showScreen('gameScreen');
         initializePlayer();
         startObstacleGeneration();
+        startTime = new Date(); // Start the timer
         document.getElementById('startButton').textContent = 'RESTART';
+        setInterval(updateFlyingSkills, 1000); // Check every second for flying skills update
     } else {
         restartGame();
     }
@@ -25,7 +30,7 @@ function startGame() {
 
 function restartGame() {
     gameStarted = false;
-    obstaclesPassedCount = 0; // Reset obstacles passed count
+    arrowClicksSum = 0; // Reset arrow clicks sum
     gameStats.resetStats(); // Reset game stats
     showScreen('startScreen');
     document.getElementById('startButton').textContent = 'START';
@@ -74,12 +79,34 @@ const gameStats = {
     }
 };
 
-function obstaclePass() {
-    obstaclesPassedCount++;
-    if (obstaclesPassedCount % 5 === 0) { // Check if 5 obstacles have passed
-        gameStats.incrementLevel(); // Increment level
+// Listen for keydown events on the document
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        arrowClicksSum++;
+        checkLevelIncrease();
     }
-    // Implement further logic if needed when an obstacle passes through gameArea
+});
+
+// Function to check if level should be increased
+function checkLevelIncrease() {
+    if (arrowClicksSum >= 25) {
+        gameStats.incrementLevel(); // Increment level
+        arrowClicksSum = 0; // Reset arrow clicks sum
+    }
+}
+
+// Function to update flying skills based on time elapsed
+function updateFlyingSkills() {
+    if (!startTime) return; // Return if game hasn't started
+
+    const currentTime = new Date();
+    const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
+
+    if (elapsedTimeInSeconds >= 10) {
+        gameStats.flyingSkills += 25; // Increase flying skills by 25
+        gameStats.updateStatsUI(); // Update UI to reflect new flying skills
+        startTime = currentTime; // Reset start time for the next 10 seconds
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

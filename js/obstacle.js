@@ -2,6 +2,7 @@
 
 const obstacles = [];
 const obstacleTypes = ['boombox', 'jackhammer', 'ambulance', 'airplane'];
+let collisionCount = 0; // Counter to track collisions with skylark
 
 function createObstacle() {
     const obstacleType = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
@@ -16,10 +17,11 @@ function createObstacle() {
 }
 
 function moveObstacles() {
+    const obstacleSpeed = 3 + (gameStats.level - 1) * 2; // Increase speed by 2 for each level
     obstacles.forEach(obstacle => {
         const topPosition = parseInt(obstacle.style.top);
         if (topPosition < gameArea.clientHeight) {
-            obstacle.style.top = `${topPosition + 5}px`; // Move down
+            obstacle.style.top = `${topPosition + obstacleSpeed}px`; // Move down with updated speed
             checkCollision(obstacle); // Check for collision with skylark
         } else {
             gameArea.removeChild(obstacle);
@@ -43,15 +45,20 @@ function checkCollision(obstacle) {
 }
 
 function handleCollision(obstacle) {
-    gameStats.decrementLives(); // Decrement lives remaining
+    collisionCount++; // Increment collision count
+    if (collisionCount === 3) {
+        gameStats.decrementLives(); // Decrement lives remaining after 3 collisions
+        collisionCount = 0; // Reset collision count
+    }
     gameArea.removeChild(obstacle); // Remove obstacle from DOM
     obstacles.splice(obstacles.indexOf(obstacle), 1); // Remove obstacle from array
 }
 
 function startObstacleGeneration() {
+    const obstacleGenerationInterval = 2000 - (gameStats.level - 1) * 200; // Decrease interval by 200ms for each level
     setInterval(() => {
         createObstacle();
-    }, 2000); // Generate a new obstacle every 2 seconds
+    }, obstacleGenerationInterval); // Generate a new obstacle every adjusted interval
 
     setInterval(() => {
         moveObstacles();
