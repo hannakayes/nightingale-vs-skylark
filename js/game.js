@@ -1,8 +1,10 @@
 // game.js
 
+// Define gameAreaHeight if it's supposed to be a constant
+const gameAreaHeight = 600; // Replace with your actual height value
+
 let gameStarted = false;
-let obstaclesPassedCount = 0; // Track how many obstacles have passed through gameArea
-let obstaclesInsideCount = 0; // Track how many obstacles are currently inside gameArea
+let obstaclesPassedCount = 0; // Track how many obstacles have passed
 
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -26,7 +28,6 @@ function startGame() {
 function restartGame() {
     gameStarted = false;
     obstaclesPassedCount = 0; // Reset obstacles passed count
-    obstaclesInsideCount = 0; // Reset obstacles inside count
     gameStats.resetStats(); // Reset game stats
     showScreen('startScreen');
     document.getElementById('startButton').textContent = 'START';
@@ -64,7 +65,7 @@ const gameStats = {
     },
     updateStatsUI: function() {
         document.getElementById('singingPoints').textContent = this.lives;
-        document.getElementById('level').textContent = `${this.level}`;
+        document.getElementById('level').textContent = `Level: ${this.level}`;
         document.getElementById('flyingSkills').textContent = this.flyingSkills;
     },
     resetStats: function() {
@@ -81,20 +82,6 @@ function obstaclePass() {
         gameStats.incrementLevel(); // Increment level
     }
     // Implement further logic if needed when an obstacle passes through gameArea
-}
-
-function obstacleEnter() {
-    obstaclesInsideCount++;
-    if (obstaclesInsideCount === 5 || obstaclesInsideCount === 10 || obstaclesInsideCount === 15 || 
-        obstaclesInsideCount === 20 || obstaclesInsideCount === 25 || obstaclesInsideCount === 30 || 
-        obstaclesInsideCount === 35 || obstaclesInsideCount === 40 || obstaclesInsideCount === 45 || 
-        obstaclesInsideCount === 50) {
-        gameStats.incrementLevel();
-    }
-}
-
-function obstacleLeave() {
-    obstaclesInsideCount--;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
