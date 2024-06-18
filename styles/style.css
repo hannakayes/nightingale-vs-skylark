@@ -1,21 +1,24 @@
-body {
-    background-color: #AB784B;
-    color: #D5F32F;
-    font-family: Baskerville, serif;
+/* General styles */
+body, html {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background-color: #AB784B;
+    color: #D5F32F;
+    font-family: Baskerville, serif;
     overflow: hidden;
 }
 
+/* Screen styles */
 .screen {
     display: none;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -27,18 +30,6 @@ body {
     display: flex;
 }
 
-.game-title {
-    align-self: flex-start;
-    margin: 20px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 3em;
-    line-height: 0.8em;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
 .main-content {
     display: flex;
     justify-content: center;
@@ -48,46 +39,65 @@ body {
     position: relative;
 }
 
+/* Title and images */
+.game-title {
+    align-self: flex-start;
+    margin: 2vh; /* Use viewport units to maintain spacing relative to screen size */
+    text-align: left;
+    font-weight: 500;
+    font-size: 3vw; /* Use viewport units to maintain font size relative to screen size */
+    line-height: 0.8em;
+    position: absolute;
+    top: 2vh;
+    left: 2vh;
+}
+
 .title-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 300px;
+    width: 40vh; /* Use viewport units to maintain image size relative to screen size */
+    height: 40vh;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+/* Intro instructions styles */
 .intro-instructions {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     position: absolute;
     top: 60%;
-    right: 20px;
+    right: 2vh;
     transform: translateY(-50%);
+    z-index: 1; /* Ensure higher stacking order */
 }
 
 .intro-text {
     text-align: right;
-    font-size: 0.8em;
-    width: 300px;
-    height: 120px;
-    padding: 10px;
+    font-size: 1.1vw; /* Use viewport units to maintain font size relative to screen size */
+    width: 38vh; /* Use viewport units to maintain size relative to screen size */
+    height: 25vh;
+    padding: 1vh;
     box-sizing: border-box;
     overflow: auto;
-    margin-bottom: 10px; /* Adjusted margin to reduce gap between intro text and instructions */
+    margin-bottom: 1vh; /* Adjusted margin to reduce gap between intro text and instructions */
+    position: relative; /* Ensure it's positioned relative */
+    z-index: 2; /* Ensure higher stacking order than .instructions */
 }
 
 .instructions {
-    font-size: 0.8em;
-    padding: 20px;
-    border: 1px solid #D5F32F;
-    border-radius: 20px;
+    font-size: 1.1vw; /* Use viewport units to maintain font size relative to screen size */
+    padding: 2vh;
+    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
+    border-radius: 2vh;
     background-color: #7A4A2B;
-    margin-top: 10px; /* Adjusted margin to reduce gap between intro text and instructions */
+    margin-top: 1vh; /* Adjusted margin to reduce gap between intro text and instructions */
+    position: relative; /* Ensure it's positioned relative */
+    z-index: 1; /* Lower stacking order than .intro-text */
 }
 
 .instructions ul {
@@ -100,20 +110,22 @@ body {
     text-align: left; /* Add some spacing between list items */
 }
 
+/* Button styles */
 button {
     background: none;
-    border: 1px solid #D5F32F;
+    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
     color: #D5F32F;
     background-color: #7A4A2B;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+    border-radius: 1vh;
+    padding: 1vh 2vh;
+    font-size: 1.5vw; /* Use viewport units to maintain font size relative to screen size */
     cursor: pointer;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 2vh;
+    right: 2vh;
 }
 
+/* Game area styles */
 #gameScreen {
     display: flex;
     justify-content: center;
@@ -124,18 +136,18 @@ button {
 }
 
 #gameArea {
-    margin-top: 10%;
-    width: 60%;
-    height: 60%;
+    margin-top: 5vh; /* Adjusted margin for spacing */
+    width: 60vw; /* Use viewport units to maintain width relative to screen size */
+    height: 80vh; /* Use viewport units to set specific height */
     background-color: #92643C;
-    border: 1px solid #D5F32F;
-    border-radius: 20px;
+    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
+    border-radius: 2vh;
     position: relative;
     overflow: hidden; /* Ensure images do not overflow */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px; /* Add padding to create the desired margins */
+    padding: 0 2vh; /* Use viewport units to maintain padding relative to screen size */
 
     /* Ensure skylark_standing.png stays inside #gameArea */
     flex-shrink: 0; /* Prevent shrinking beyond initial size */
@@ -146,57 +158,61 @@ button {
     max-height: 100%; /* Ensure images resize appropriately */
 }
 
+/* Ensure skylark_standing.png stays inside #gameArea */
 #skylark {
     position: absolute;
-    width: 100px; /* Adjust width as needed */
-    left: 10px; /* Initial left position */
-    top: 60%; /* Adjust top position */
+    width: 8vw; /* Use viewport units to maintain size relative to screen size */
+    left: 2%; /* Adjusted percentage to stay inside #gameArea */
+    top: 10%; /* Use viewport units to maintain position relative to screen size */
+    transform: translateY(-50%);
 }
-
 
 #nightingale {
     position: absolute;
-    margin-top: 30%;
-    width: 100px;
-    right: 10px; /* Fix the nightingale to the right with a margin */
+    margin-top: 10vh; /* Use viewport units to maintain margin relative to screen size */
+    width: 8vw; /* Use viewport units to maintain size relative to screen size */
+    right: 6vh; /* Use viewport units to maintain position relative to screen size */
+    top: 50%; /* Use viewport units to maintain position relative to screen size */
+    transform: translateY(-50%);
 }
 
-
 #gameStats {
-    font-size: 1em;
+    font-size: 1.5vw; /* Use viewport units to maintain font size relative to screen size */
     line-height: 0.5em;
     text-align: left;
     position: absolute;
-    left: 20px; /* Adjust as needed */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%);
-    margin: 20px;
+    left: 2vh; /* Use viewport units to maintain position relative to screen size */
+    top: 50%; /* Use viewport units to maintain position relative to screen size */
+    transform: translateY(-50%); /* Adjusted to align vertically with #nightingale */
+    margin: 2vh;
 }
 
 #endMessage {
-    font-size: 24px;
-    margin: 20px;
+    font-size: 3vw; /* Use viewport units to maintain font size relative to screen size */
+    margin: 2vh;
+    text-align: center;
 }
 
+/* Element styles */
 .element {
     position: absolute;
-    width: 80px; /* Adjust width as needed */
-    height: 80px; /* Adjust height as needed */
+    width: 8vw; /* Use viewport units to maintain size relative to screen size */
+    height: 8vw; /* Use viewport units to maintain size relative to screen size */
 }
 
-/* Styling for each specific element */
+/* Preserve aspect ratio for elements */
 #boombox {
-    width: 100px;  /* Add specific styling for boombox.png */
+    aspect-ratio: 1/1.5; /* 1:1.5 aspect ratio */
 }
 
 #jackhammer {
-    width: 100px;/* Add specific styling for jackhammer.png */
+    aspect-ratio: 1/1; /* 1:1 aspect ratio */
 }
 
 #ambulance {
-    width: 100px; /* Add specific styling for ambulance.png */
+    aspect-ratio: 1.5/1; /* 1.5:1 aspect ratio */
 }
 
 #airplane {
-    width: 100px; /* Add specific styling for airplane.png */
+    aspect-ratio: 1/1; /* 1:1 aspect ratio */
 }

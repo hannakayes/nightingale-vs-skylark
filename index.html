@@ -23,13 +23,14 @@
                 </ul>
             </div>
         </div>
-        <button id="startButton" onclick="startGame()">START</button>
+        <button id="startButton" class="start-button">START</button>
     </div>
-    
     <div id="gameScreen" class="screen">
         <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
         <div id="gameArea">
             <img src="images/skylark_standing.png" alt="Skylark" id="skylark">
+        </div>
+        <div id="nightingaleContainer">
             <img src="/images/nightingale.png" alt="Nightingale" id="nightingale">
         </div>
         <div id="gameStats">
@@ -38,13 +39,15 @@
             <p>Flying skills: <span id="flyingSkills">0</span></p>
         </div>
     </div>
-    
     <div id="endScreen" class="screen">
-        <h1 class="game-title">Nachtigall, ick hör dir trapsen.</h1>
         <div id="endMessage"></div>
-        <button onclick="restartGame()">RESTART</button>
+        <button id="restartButton" class="restart-button">RESTART</button>
     </div>
 
+    <script src="/js/"></script>
+    <script src="/js/player.js"></script>
+    <script src="/js/obstacle.js"></script>
+    <script src="/js/game.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>
