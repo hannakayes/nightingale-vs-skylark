@@ -238,3 +238,10 @@ button:hover, button:active {
     font-size: 3vw; /* Maintain the same font size */
     z-index: 1; /* Ensure it's above other elements */
 }
+
+#speechBubble {
+    width: 70px; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    z-index: 100; /* Ensure it's above other elements */
+    /* Additional styles for positioning */
+}
