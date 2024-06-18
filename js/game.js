@@ -1,5 +1,3 @@
-// game.js
-
 // Define gameAreaHeight if it's supposed to be a constant
 const gameAreaHeight = 600; // Replace with your actual height value
 
@@ -65,7 +63,7 @@ const gameStats = {
     },
     updateStatsUI: function() {
         document.getElementById('singingPoints').textContent = this.lives;
-        document.getElementById('level').textContent = `Level: ${this.level}`;
+        document.getElementById('level').textContent = this.level;
         document.getElementById('flyingSkills').textContent = this.flyingSkills;
     },
     resetStats: function() {
@@ -89,4 +87,63 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('startButton').addEventListener('click', startGame);
     document.getElementById('restartButton').addEventListener('click', restartGame); // Restart game on restart button click
     document.querySelector('.title-image').addEventListener('click', startGame); // Start game when title image is clicked
+
+    // Hover and click events for buttons to switch colors
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+            this.style.borderColor = '#7A4A2B';
+            this.style.color = '#7A4A2B';
+            this.style.backgroundColor = '#D5F32F';
+        });
+        button.addEventListener('mouseout', function() {
+            this.style.borderColor = '#D5F32F';
+            this.style.color = '#D5F32F';
+            this.style.backgroundColor = '#7A4A2B';
+        });
+        button.addEventListener('mousedown', function() {
+            this.style.borderColor = '#7A4A2B';
+            this.style.color = '#7A4A2B';
+            this.style.backgroundColor = '#D5F32F';
+        });
+        button.addEventListener('mouseup', function() {
+            this.style.borderColor = '#D5F32F';
+            this.style.color = '#D5F32F';
+            this.style.backgroundColor = '#7A4A2B';
+        });
+    });
+
+    // Hover and click events for images to switch source
+    const titleImage = document.querySelector('.title-image');
+    const nightingaleImage = document.getElementById('nightingale');
+
+    if (titleImage) {
+        titleImage.addEventListener('mouseover', function() {
+            this.src = 'images/title-image_inverted.png';
+        });
+        titleImage.addEventListener('mouseout', function() {
+            this.src = 'images/title-image.png';
+        });
+        titleImage.addEventListener('mousedown', function() {
+            this.src = 'images/title-image_inverted.png';
+        });
+        titleImage.addEventListener('mouseup', function() {
+            this.src = 'images/title-image.png';
+        });
+    }
+
+    if (nightingaleImage) {
+        nightingaleImage.addEventListener('mouseover', function() {
+            this.src = 'images/nightingale_inverted.png';
+        });
+        nightingaleImage.addEventListener('mouseout', function() {
+            this.src = 'images/nightingale.png';
+        });
+        nightingaleImage.addEventListener('mousedown', function() {
+            this.src = 'images/nightingale_inverted.png';
+        });
+        nightingaleImage.addEventListener('mouseup', function() {
+            this.src = 'images/nightingale.png';
+        });
+    }
 });

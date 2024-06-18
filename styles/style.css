@@ -123,6 +123,13 @@ button {
     position: absolute;
     top: 2vh;
     right: 2vh;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button:hover, button:active {
+    border-color: #7A4A2B;
+    color: #7A4A2B;
+    background-color: #D5F32F;
 }
 
 /* Game area styles */
@@ -172,7 +179,7 @@ button {
     margin-top: 10vh; /* Use viewport units to maintain margin relative to screen size */
     width: 8vw; /* Use viewport units to maintain size relative to screen size */
     right: 6vh; /* Use viewport units to maintain position relative to screen size */
-    top: 50%; /* Use viewport units to maintain position relative to screen size */
+    top: 40%; /* Use viewport units to maintain position relative to screen size */
     transform: translateY(-50%);
 }
 
@@ -200,19 +207,15 @@ button {
     height: 8vw; /* Use viewport units to maintain size relative to screen size */
 }
 
-/* Preserve aspect ratio for elements */
-#boombox {
-    aspect-ratio: 1/1.5; /* 1:1.5 aspect ratio */
+/* Preserve aspect ratio for specific elements */
+#boombox, #jackhammer, #ambulance, #airplane {
+    width: 8vw; /* Use viewport units to maintain size relative to screen size */
+    height: auto; /* Ensure height adjusts according to aspect ratio */
+    object-fit: contain; /* Preserve aspect ratio */
 }
 
 #jackhammer {
-    aspect-ratio: 1/1; /* 1:1 aspect ratio */
-}
-
-#ambulance {
-    aspect-ratio: 1.5/1; /* 1.5:1 aspect ratio */
-}
-
-#airplane {
-    aspect-ratio: 1/1; /* 1:1 aspect ratio */
+    width: 6vw; /* Make the jackhammer smaller */
+    height: auto; /* Ensure height adjusts according to aspect ratio */
+    object-fit: contain; /* Preserve aspect ratio */
 }
