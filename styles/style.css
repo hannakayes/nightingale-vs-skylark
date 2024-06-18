@@ -226,6 +226,15 @@ button:hover, button:active {
     border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
     border-radius: 2vh;
     background-color: #7A4A2B;
-    margin-top: 5%;
+    margin-top: 2%; /* Adjusted margin for spacing */
     text-align: center;
+}
+
+/* Ensuring consistency of game title position on end screen */
+#endScreen .game-title {
+    position: absolute;
+    top: 2vh;
+    left: 2vh;
+    font-size: 3vw; /* Maintain the same font size */
+    z-index: 1; /* Ensure it's above other elements */
 }
