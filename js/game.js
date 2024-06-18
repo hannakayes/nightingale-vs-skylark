@@ -44,7 +44,25 @@ function restartGame() {
 
 function endGame() {
     showScreen('endScreen');
-    document.getElementById('endMessage').textContent = 'Your final scores...';
+    const endMessageElement = document.getElementById('endMessage');
+
+    if (gameStats.level < 3) {
+        endMessageElement.textContent = "City life is tough. Better luck next time!";
+    } else if (gameStats.level < 6) {
+        endMessageElement.textContent = "You're definitely an urban lark but nightingale wins!";
+    } else if (gameStats.level < 10) {
+        endMessageElement.textContent = "You use your voice well, little lark!";
+    } else if (gameStats.level === 10) {
+        endMessageElement.textContent = "You mastered all city noises – nightingale has nothing on you!";
+    }
+
+    // Display final stats
+    const finalStatsElement = document.getElementById('finalStats');
+    finalStatsElement.innerHTML = `
+        <p>Lives remaining: ${gameStats.lives}</p>
+        <p>Level reached: ${gameStats.level}</p>
+        <p>Flying skills: ${gameStats.flyingSkills}</p>
+    `;
 }
 
 // Initialize game stats

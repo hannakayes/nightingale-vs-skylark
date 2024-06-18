@@ -46,7 +46,7 @@ function checkCollision(obstacle) {
 
 function handleCollision(obstacle) {
     collisionCount++; // Increment collision count
-    if (collisionCount === 3) {
+    if (collisionCount === 2) {
         gameStats.decrementLives(); // Decrement lives remaining after 3 collisions
         collisionCount = 0; // Reset collision count
     }

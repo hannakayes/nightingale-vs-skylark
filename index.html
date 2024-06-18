@@ -43,6 +43,7 @@
     </div>
     <div id="endScreen" class="screen">
         <div id="endMessage"></div>
+        <div id="finalStats"></div>
         <button id="restartButton" class="restart-button">RESTART</button>
     </div>
 
@@ -57,13 +58,37 @@
             // Confirm IDs used in game.js are available
             const singingPoints = document.getElementById('singingPoints'); // For lives remaining
             const level = document.getElementById('level'); // For current level
-            const restartButton = document.getElementById('restartButton'); // Restart button
+            const flyingSkills = document.getElementById('flyingSkills'); // For flying skills
+            const endMessageElement = document.getElementById('endMessage'); // For displaying end message
+            const finalStatsElement = document.getElementById('finalStats'); // For displaying final stats
 
-            // Ensure obstaclePass() is called properly
-            function obstaclePass() {
-                // Implement obstacle passing logic if needed
-                // This function should be invoked when an obstacle passes through #gameArea
+            // Update endGame function in game.js to show appropriate message and stats
+            function endGame() {
+                showScreen('endScreen');
+
+                // Determine end message based on gameStats.level
+                if (gameStats.level < 3) {
+                    endMessageElement.textContent = "City life is tough. Better luck next time!";
+                } else if (gameStats.level < 6) {
+                    endMessageElement.textContent = "You're definitely an urban lark but nightingale wins!";
+                } else if (gameStats.level < 10) {
+                    endMessageElement.textContent = "You use your voice well, little lark!";
+                } else if (gameStats.level === 10) {
+                    endMessageElement.textContent = "You mastered all city noises – nightingale has nothing on you!";
+                }
+
+                // Display final stats
+                finalStatsElement.innerHTML = `
+                
+                    <p>Lives remaining: ${gameStats.lives}</p>
+                    <p>Level reached: ${gameStats.level}</p>
+                    <p>Flying skills: ${gameStats.flyingSkills}</p>
+                `;
             }
+
+            // Ensure restartButton is correctly referenced
+            const restartButton = document.getElementById('restartButton');
+            restartButton.addEventListener('click', restartGame);
         });
     </script>
 </body>
