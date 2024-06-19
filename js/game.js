@@ -6,6 +6,16 @@ const gameAreaHeight = 600; // Replace with your actual height value
 let gameStarted = false;
 let arrowClicksSum = 0; // Track total arrow clicks sum
 let startTime = null; // Variable to store the start time
+let skylarkSound = null; // Variable to store skylark sound element
+
+// Function to stop all playing sounds except end game audio
+function stopAllSounds() {
+    const sounds = document.querySelectorAll('audio:not(#endGameAudio)');
+    sounds.forEach(sound => {
+        sound.pause();
+        sound.currentTime = 0;
+    });
+}
 
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -38,13 +48,30 @@ function restartGame() {
     // Clear any existing obstacles on the screen
     clearObstacles();
 
-    // Reload the page
-    window.location.reload();
+    // Stop skylark sound specifically
+    const skylarkSound = document.getElementById('endGameAudio');
+    if (skylarkSound) {
+        skylarkSound.pause();
+        skylarkSound.currentTime = 0;
+    }
+
+    // Stop all other sounds
+    stopAllSounds();
+
+    // Reload the page after a short delay (ensure all sounds are stopped)
+    setTimeout(() => {
+        window.location.reload();
+    }, 500); // Adjust the delay as needed
 }
 
+
 function endGame() {
-    // Stop all playing sounds
+    // Stop all playing sounds except end game audio
     stopAllSounds();
+
+    // Play the end game audio
+    const endGameAudio = document.getElementById('endGameAudio');
+    endGameAudio.play();
 
     showScreen('endScreen');
     const endMessageElement = document.getElementById('endMessage');
@@ -66,15 +93,6 @@ function endGame() {
         <p>Level reached: ${gameStats.level}</p>
         <p>Flying skills: ${gameStats.flyingSkills}</p>
     `;
-}
-
-// Function to stop all playing sounds
-function stopAllSounds() {
-    const sounds = document.querySelectorAll('audio');
-    sounds.forEach(sound => {
-        sound.pause();
-        sound.currentTime = 0;
-    });
 }
 
 // Initialize game stats
@@ -173,9 +191,13 @@ function checkCollision(obstacle) {
     }
 }
 
+// Function to play a sound by its ID
 function playSound(soundName) {
-    const audio = new Audio(`sounds/${soundName}.mp3`);
-    audio.play();
+    const audio = document.getElementById(soundName);
+    if (audio) {
+        audio.currentTime = 0; // Rewind to the start
+        audio.play();
+    }
 }
 
 function handleCollision(obstacle) {
