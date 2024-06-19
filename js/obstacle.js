@@ -10,6 +10,7 @@ function createObstacle() {
     obstacle.src = `images/${obstacleType}.png`;
     obstacle.className = 'element';
     obstacle.id = obstacleType;
+    obstacle.setAttribute('data-type', obstacleType); // Set data-type attribute
     obstacle.style.top = '0px'; // Start from the top
     obstacle.style.left = `${Math.random() * (gameArea.clientWidth - 80)}px`; // Random horizontal position
     gameArea.appendChild(obstacle);

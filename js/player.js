@@ -1,5 +1,3 @@
-// player.js
-
 let skylark, gameArea, skylarkPosition;
 let isJumping = false;
 let isFlying = false;

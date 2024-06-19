@@ -43,6 +43,9 @@ function restartGame() {
 }
 
 function endGame() {
+    // Stop all playing sounds
+    stopAllSounds();
+
     showScreen('endScreen');
     const endMessageElement = document.getElementById('endMessage');
 
@@ -63,6 +66,15 @@ function endGame() {
         <p>Level reached: ${gameStats.level}</p>
         <p>Flying skills: ${gameStats.flyingSkills}</p>
     `;
+}
+
+// Function to stop all playing sounds
+function stopAllSounds() {
+    const sounds = document.querySelectorAll('audio');
+    sounds.forEach(sound => {
+        sound.pause();
+        sound.currentTime = 0;
+    });
 }
 
 // Initialize game stats
@@ -125,6 +137,55 @@ function updateFlyingSkills() {
         gameStats.updateStatsUI(); // Update UI to reflect new flying skills
         startTime = currentTime; // Reset start time for the next 10 seconds
     }
+}
+
+function checkCollision(obstacle) {
+    const skylarkRect = skylark.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
+
+    if (
+        skylarkRect.right > obstacleRect.left &&
+        skylarkRect.left < obstacleRect.right &&
+        skylarkRect.bottom > obstacleRect.top &&
+        skylarkRect.top < obstacleRect.bottom
+    ) {
+        const obstacleType = obstacle.getAttribute('data-type');
+
+        // Play sound based on obstacle type
+        switch (obstacleType) {
+            case 'boombox':
+                playSound('boombox_sound');
+                break;
+            case 'airplane':
+                playSound('airplane_sound');
+                break;
+            case 'ambulance':
+                playSound('ambulance_sound');
+                break;
+            case 'jackhammer':
+                playSound('jackhammer_sound');
+                break;
+            default:
+                break;
+        }
+
+        handleCollision(obstacle);
+    }
+}
+
+function playSound(soundName) {
+    const audio = new Audio(`sounds/${soundName}.mp3`);
+    audio.play();
+}
+
+function handleCollision(obstacle) {
+    collisionCount++; // Increment collision count
+    if (collisionCount === 2) {
+        gameStats.decrementLives(); // Decrement lives remaining after 3 collisions
+        collisionCount = 0; // Reset collision count
+    }
+    gameArea.removeChild(obstacle); // Remove obstacle from DOM
+    obstacles.splice(obstacles.indexOf(obstacle), 1); // Remove obstacle from array
 }
 
 document.addEventListener('DOMContentLoaded', function() {
