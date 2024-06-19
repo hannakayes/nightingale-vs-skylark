@@ -111,9 +111,13 @@ function endGame() {
     // Stop all playing sounds except end game audio
     stopAllSounds();
 
+    // Stop the nightingale song specifically
+    const nightingaleAudio = document.getElementById('nightingaleAudio');
+    stopSound(nightingaleAudio);
+
     // Play the end game audio
     const endGameAudio = document.getElementById('endGameAudio');
-    playSound(endGameAudio);
+    endGameAudio.play();
 
     showScreen('endScreen');
     const endMessageElement = document.getElementById('endMessage');
@@ -136,6 +140,7 @@ function endGame() {
         <p>Flying skills: ${gameStats.flyingSkills}</p>
     `;
 }
+
 
 // Initialize game stats
 const gameStats = {
