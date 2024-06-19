@@ -56,37 +56,36 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40vh; /* Use viewport units to maintain image size relative to screen size */
-    height: 40vh;
+    max-width: 40vh; /* Use viewport units to maintain image size relative to screen size */
+    max-height: 40vh;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-/* Intro instructions styles */
-.intro-instructions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: absolute;
-    top: 60%;
-    right: 2vh;
-    transform: translateY(-50%);
-    z-index: 1; /* Ensure higher stacking order */
+    box-sizing: border-box;
 }
 
 .intro-text {
-    text-align: right;
-    font-size: 1.1vw; /* Use viewport units to maintain font size relative to screen size */
-    width: 38vh; /* Use viewport units to maintain size relative to screen size */
-    height: 25vh;
+    text-align: left; /* Align text to the left */
+    font-size: 1.3vw; /* Use viewport units to maintain font size relative to screen size */
+    width: 29%; /* Use viewport units to maintain size relative to screen size */
+    height: 23vh;
+    margin-left: 2vh;
     padding: 1vh;
     box-sizing: border-box;
     overflow: auto;
-    margin-bottom: 1vh; /* Adjusted margin to reduce gap between intro text and instructions */
-    position: relative; /* Ensure it's positioned relative */
-    z-index: 2; /* Ensure higher stacking order than .instructions */
+    position: absolute; /* Position absolutely within start screen */
+    bottom: 1vh; /* Position at the bottom */
+    left: 2vh; /* Position at the left */
+    z-index: 2; /* Ensure it's above other elements */
+}
+
+#shakespeare-quote {
+    font-size: 1.6vw;
+    font-weight: 550;
+    line-height: 1.2em;
 }
 
 .instructions {
@@ -95,9 +94,12 @@ body, html {
     border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
     border-radius: 2vh;
     background-color: #7A4A2B;
-    margin-top: 1vh; /* Adjusted margin to reduce gap between intro text and instructions */
-    position: relative; /* Ensure it's positioned relative */
-    z-index: 1; /* Lower stacking order than .intro-text */
+    margin-top: 1vh;
+    margin-bottom: 4vh; /* Adjusted margin to reduce gap between intro text and instructions */
+    position: absolute; /* Position absolutely within start screen */
+    bottom: 2vh; /* Position at the bottom */
+    right: 2vh; /* Position at the right */
+    z-index: 2; /* Ensure it's above other elements */
 }
 
 .instructions ul {
@@ -127,6 +129,28 @@ button {
 }
 
 button:hover, button:active {
+    border-color: #7A4A2B;
+    color: #7A4A2B;
+    background-color: #D5F32F;
+}
+
+button.pause-button {
+    /* Same styles as the other buttons */
+    background: none;
+    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
+    color: #D5F32F;
+    background-color: #7A4A2B;
+    border-radius: 1vh;
+    padding: 1vh 2vh;
+    font-size: 1.5vw; /* Use viewport units to maintain font size relative to screen size */
+    cursor: pointer;
+    position: absolute;
+    top: 2vh; /* Different position than start button to avoid overlap */
+    right: 2vh;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+button.pause-button:hover, button.pause-button:active {
     border-color: #7A4A2B;
     color: #7A4A2B;
     background-color: #D5F32F;
@@ -217,7 +241,7 @@ button:hover, button:active {
 #jackhammer {
     width: 6vw; /* Make the jackhammer smaller */
     height: auto; /* Ensure height adjusts according to aspect ratio */
-    object-fit: contain; /* Preserve aspect ratio */
+    object-fit: contain;
 }
 
 #finalStats {

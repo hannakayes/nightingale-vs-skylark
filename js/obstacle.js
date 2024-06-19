@@ -48,7 +48,7 @@ function checkCollision(obstacle) {
 function handleCollision(obstacle) {
     collisionCount++; // Increment collision count
     if (collisionCount === 2) {
-        gameStats.decrementLives(); // Decrement lives remaining after 3 collisions
+        gameStats.decrementLives(); // Decrement lives remaining after 2 collisions
         collisionCount = 0; // Reset collision count
     }
     gameArea.removeChild(obstacle); // Remove obstacle from DOM
@@ -56,12 +56,13 @@ function handleCollision(obstacle) {
 }
 
 function startObstacleGeneration() {
-    const obstacleGenerationInterval = 2000 - (gameStats.level - 1) * 200; // Decrease interval by 200ms for each level
-    setInterval(() => {
+    const obstacleGenerationIntervalTime = 2000 - (gameStats.level - 1) * 200; // Decrease interval by 200ms for each level
+    obstacleGenerationInterval = setInterval(() => {
         createObstacle();
-    }, obstacleGenerationInterval); // Generate a new obstacle every adjusted interval
+    }, obstacleGenerationIntervalTime); // Generate a new obstacle every adjusted interval
 
-    setInterval(() => {
+    obstacleMovementInterval = setInterval(() => {
         moveObstacles();
     }, 16); // Move obstacles every 16ms
 }
+z

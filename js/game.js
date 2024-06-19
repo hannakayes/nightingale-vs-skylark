@@ -1,21 +1,11 @@
-// game.js
-
-// Define gameAreaHeight if it's supposed to be a constant
-const gameAreaHeight = 600; // Replace with your actual height value
-
 let gameStarted = false;
+let gamePaused = false;
 let arrowClicksSum = 0; // Track total arrow clicks sum
 let startTime = null; // Variable to store the start time
 let skylarkSound = null; // Variable to store skylark sound element
-
-// Function to stop all playing sounds except end game audio
-function stopAllSounds() {
-    const sounds = document.querySelectorAll('audio:not(#endGameAudio)');
-    sounds.forEach(sound => {
-        sound.pause();
-        sound.currentTime = 0;
-    });
-}
+let obstacleGenerationInterval; // Store interval for obstacle generation
+let obstacleMovementInterval; // Store interval for obstacle movement
+const playingSounds = []; // Array to track currently playing sounds
 
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(screen => {
@@ -44,26 +34,78 @@ function restartGame() {
     gameStats.resetStats(); // Reset game stats
     showScreen('startScreen');
     document.getElementById('startButton').textContent = 'START';
-    
+
     // Clear any existing obstacles on the screen
     clearObstacles();
 
-    // Stop skylark sound specifically
-    const skylarkSound = document.getElementById('endGameAudio');
-    if (skylarkSound) {
-        skylarkSound.pause();
-        skylarkSound.currentTime = 0;
-    }
+    // Stop intervals
+    clearInterval(obstacleGenerationInterval);
+    clearInterval(obstacleMovementInterval);
 
-    // Stop all other sounds
+    // Stop any playing sounds
     stopAllSounds();
-
-    // Reload the page after a short delay (ensure all sounds are stopped)
-    setTimeout(() => {
-        window.location.reload();
-    }, 500); // Adjust the delay as needed
 }
 
+function pauseGame() {
+    if (gamePaused) {
+        resumeGame();
+    } else {
+        gamePaused = true;
+        clearInterval(obstacleGenerationInterval);
+        clearInterval(obstacleMovementInterval);
+        document.getElementById('pauseButton').textContent = 'RESUME';
+
+        // Pause all playing sounds
+        pauseAllSounds();
+    }
+}
+
+function resumeGame() {
+    gamePaused = false;
+    startObstacleGeneration();
+    document.getElementById('pauseButton').textContent = 'PAUSE';
+
+    // Resume all paused sounds
+    resumeAllSounds();
+}
+
+function clearObstacles() {
+    const allObstacles = document.querySelectorAll('.element');
+    allObstacles.forEach(obstacle => obstacle.remove());
+    obstacles.length = 0; // Clear the obstacles array
+}
+
+function playSound(sound) {
+    sound.play();
+    playingSounds.push(sound); // Add sound to the playingSounds array
+}
+
+function stopSound(sound) {
+    sound.pause();
+    sound.currentTime = 0;
+    const index = playingSounds.indexOf(sound);
+    if (index > -1) {
+        playingSounds.splice(index, 1); // Remove sound from the playingSounds array
+    }
+}
+
+function pauseAllSounds() {
+    playingSounds.forEach(sound => sound.pause());
+}
+
+function resumeAllSounds() {
+    playingSounds.forEach(sound => sound.play());
+}
+
+function stopAllSounds() {
+    playingSounds.forEach(sound => {
+        sound.pause();
+        sound.currentTime = 0;
+    });
+    playingSounds.length = 0; // Clear the playingSounds array
+}
+
+document.getElementById('pauseButton').addEventListener('click', pauseGame);
 
 function endGame() {
     // Stop all playing sounds except end game audio
@@ -71,7 +113,7 @@ function endGame() {
 
     // Play the end game audio
     const endGameAudio = document.getElementById('endGameAudio');
-    endGameAudio.play();
+    playSound(endGameAudio);
 
     showScreen('endScreen');
     const endMessageElement = document.getElementById('endMessage');
@@ -172,16 +214,16 @@ function checkCollision(obstacle) {
         // Play sound based on obstacle type
         switch (obstacleType) {
             case 'boombox':
-                playSound('boombox_sound');
+                playSound(document.getElementById('boombox_sound'));
                 break;
             case 'airplane':
-                playSound('airplane_sound');
+                playSound(document.getElementById('airplane_sound'));
                 break;
             case 'ambulance':
-                playSound('ambulance_sound');
+                playSound(document.getElementById('ambulance_sound'));
                 break;
             case 'jackhammer':
-                playSound('jackhammer_sound');
+                playSound(document.getElementById('jackhammer_sound'));
                 break;
             default:
                 break;
@@ -191,19 +233,10 @@ function checkCollision(obstacle) {
     }
 }
 
-// Function to play a sound by its ID
-function playSound(soundName) {
-    const audio = document.getElementById(soundName);
-    if (audio) {
-        audio.currentTime = 0; // Rewind to the start
-        audio.play();
-    }
-}
-
 function handleCollision(obstacle) {
     collisionCount++; // Increment collision count
     if (collisionCount === 2) {
-        gameStats.decrementLives(); // Decrement lives remaining after 3 collisions
+        gameStats.decrementLives(); // Decrement lives remaining after 2 collisions
         collisionCount = 0; // Reset collision count
     }
     gameArea.removeChild(obstacle); // Remove obstacle from DOM
@@ -275,3 +308,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+

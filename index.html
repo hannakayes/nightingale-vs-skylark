@@ -15,7 +15,8 @@
             <img src="images/title-image.png" alt="Start Image" class="title-image">
         </div>
         <div class="intro-instructions">
-            <p class="intro-text">“It was the nightingale, and not the lark” is what Shakespeare wrote in the 16th century – in literature, nightingale and skylark have been contestants for the most beautiful song since humans started writing about them. High time they settle their battle once and for all. Make them sing loud and clear – but beware of noisy objects flying by!</p>
+            <p class="intro-text"><span id="shakespeare-quote">“It was the nightingale, and not the lark”</span>
+                <br>is what Shakespeare wrote in the 16th century – in literature, nightingale and skylark have been contestants for the most beautiful song since humans started writing about them. High time they settle their battle once and for all. Make them sing loud and clear – but beware of noisy objects flying by!</p>
             <div class="instructions">
                 <ul>
                     <li>↑ Arrow up – Make the lark jump</li>
@@ -61,11 +62,17 @@
             Your browser does not support the audio element.
         </audio>
         
+        <audio id="skylarkSong">
+            <source src="sounds/skylark_song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
         <div id="gameStats">
             <p>Lives left: <span id="singingPoints">3</span></p>
             <p>Level: <span id="level">1</span></p>
             <p>Flying skills: <span id="flyingSkills">0</span></p>
         </div>
+        <button id="pauseButton" class="pause-button">PAUSE</button>
     </div>
     <div id="endScreen" class="screen">
         <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
@@ -118,10 +125,6 @@
                     <p>Flying skills: ${gameStats.flyingSkills}</p>
                 `;
             }
-
-            // Ensure restartButton is correctly referenced
-            const restartButton = document.getElementById('restartButton');
-            restartButton.addEventListener('click', restartGame);
         });
     </script>
 </body>

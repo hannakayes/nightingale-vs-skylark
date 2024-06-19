@@ -5,6 +5,9 @@ let jumpInterval; // Variable to store interval for jump animation
 let fallInterval; // Variable to store interval for falling animation
 const moveSpeed = 20; // Adjust movement speed here
 
+// Audio element for skylark song
+let skylarkSong = document.getElementById('skylarkSong');
+
 function initializePlayer() {
     skylark = document.getElementById('skylark');
     gameArea = document.getElementById('gameArea');
@@ -34,6 +37,7 @@ function handleKeyDown(event) {
         isJumping = true;
         jumpUp(); // Start jump animation
         switchToFlyingImage();
+        skylarkSong.play(); // Start playing skylark song
     } else if (event.key === 'ArrowDown' && !isFlying) {
         isFlying = true;
         clearInterval(fallInterval); // Clear any existing fall interval
@@ -46,6 +50,8 @@ function handleKeyUp(event) {
     if (event.key === 'ArrowUp') {
         clearInterval(jumpInterval); // Stop jump animation
         isJumping = false;
+        skylarkSong.pause(); // Pause skylark song
+        skylarkSong.currentTime = 0; // Reset skylark song to start
     } else if (event.key === 'ArrowDown') {
         clearInterval(fallInterval); // Stop fall animation
         isFlying = false;
