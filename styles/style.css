@@ -289,6 +289,7 @@ button.pause-button:hover, button.pause-button:active {
     background-color: #7A4A2B;
     text-align: center;
     margin-top: 1%;
+    line-height: 0.8em;
     
 }
 
