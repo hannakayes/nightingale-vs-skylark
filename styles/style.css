@@ -273,9 +273,12 @@ button.pause-button:hover, button.pause-button:active {
 
 #endMessage {
     font-size: 3vw; /* Use viewport units to maintain font size relative to screen size */
-    margin: 0; /* Remove margin */
+    margin: 2vh;
+    margin-top: 40vh;
     text-align: center;
-    margin-top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #finalStats {
@@ -285,8 +288,8 @@ button.pause-button:hover, button.pause-button:active {
     border-radius: 2vh;
     background-color: #7A4A2B;
     text-align: center;
-    margin: 0; 
-    margin-top: 10%;/* Remove margin */
+    margin-top: 1%;
+    
 }
 
 #supportMessage {
