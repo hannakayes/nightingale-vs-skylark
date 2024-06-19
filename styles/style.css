@@ -218,12 +218,6 @@ button.pause-button:hover, button.pause-button:active {
     margin: 2vh;
 }
 
-#endMessage {
-    font-size: 3vw; /* Use viewport units to maintain font size relative to screen size */
-    margin: 2vh;
-    text-align: center;
-}
-
 /* Element styles */
 .element {
     position: absolute;
@@ -244,14 +238,11 @@ button.pause-button:hover, button.pause-button:active {
     object-fit: contain;
 }
 
-#finalStats {
-    font-size: 1.5vw; /* Use viewport units to maintain font size relative to screen size */
-    padding: 2vh;
-    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
-    border-radius: 2vh;
-    background-color: #7A4A2B;
-    margin-top: 2%; /* Adjusted margin for spacing */
-    text-align: center;
+#speechBubble {
+    width: 70px; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    z-index: 100; /* Ensure it's above other elements */
+    /* Additional styles for positioning */
 }
 
 /* Ensuring consistency of game title position on end screen */
@@ -263,9 +254,59 @@ button.pause-button:hover, button.pause-button:active {
     z-index: 1; /* Ensure it's above other elements */
 }
 
-#speechBubble {
-    width: 70px; /* Adjust width as needed */
-    height: auto; /* Adjust height as needed */
-    z-index: 100; /* Ensure it's above other elements */
-    /* Additional styles for positioning */
+#endScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the start of the container */
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#endContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Ensure no gap between the items */
+}
+
+#endMessage {
+    font-size: 3vw; /* Use viewport units to maintain font size relative to screen size */
+    margin: 0; /* Remove margin */
+    text-align: center;
+    margin-top: 30%;
+}
+
+#finalStats {
+    font-size: 1.5vw; /* Use viewport units to maintain font size relative to screen size */
+    padding: 2vh;
+    border: 0.1vh solid #D5F32F; /* Use viewport units to maintain border thickness */
+    border-radius: 2vh;
+    background-color: #7A4A2B;
+    text-align: center;
+    margin: 0; 
+    margin-top: 10%;/* Remove margin */
+}
+
+#supportMessage {
+    text-align: center;
+    font-size: 2.5vh;
+    width: 50vw; /* Use viewport units to maintain size relative to screen size */
+    margin: 0; /* Remove margin */
+    padding: 10px; /* Add padding as needed */
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 20px; /* Position at the bottom of the screen with a little padding */
+}
+
+/* Style for links in #supportMessage */
+#supportMessage a {
+    color: #D5F32F;
+    text-decoration: underline;
+}
+
+#supportMessage a:hover {
+    color: #92643C;
+    background-color: #D5F32F;
 }

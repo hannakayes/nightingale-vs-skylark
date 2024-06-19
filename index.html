@@ -28,6 +28,7 @@
         </div>
         <button id="startButton" class="start-button">START</button>
     </div>
+
     <div id="gameScreen" class="screen">
         <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
         <div id="gameArea">
@@ -74,10 +75,14 @@
         </div>
         <button id="pauseButton" class="pause-button">PAUSE</button>
     </div>
+
     <div id="endScreen" class="screen">
         <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
-        <div id="endMessage"></div>
-        <div id="finalStats"></div>
+        <div id="endContent">
+            <div id="endMessage"></div>
+            <div id="finalStats"></div>
+        </div>
+        <div id="supportMessage"></div>
         <button id="restartButton" class="restart-button">RESTART</button>
         
         <!-- Add the endGameAudio element here -->
@@ -101,6 +106,7 @@
             const flyingSkills = document.getElementById('flyingSkills'); // For flying skills
             const endMessageElement = document.getElementById('endMessage'); // For displaying end message
             const finalStatsElement = document.getElementById('finalStats'); // For displaying final stats
+            const supportMessageElement = document.getElementById('supportMessage'); // For displaying support message
 
             // Update endGame function in game.js to show appropriate message and stats
             function endGame() {
@@ -119,10 +125,20 @@
 
                 // Display final stats
                 finalStatsElement.innerHTML = `
-                
                     <p>Lives remaining: ${gameStats.lives}</p>
                     <p>Level reached: ${gameStats.level}</p>
                     <p>Flying skills: ${gameStats.flyingSkills}</p>
+                `;
+
+                // Append additional message about supporting nature conservation with links
+                supportMessageElement.innerHTML = `
+                    *Skylark and nightingale both need your help as their natural habitats get smaller by the day. If you want to make sure that we all can listen to their unique songs in the future, consider supporting organizations dedicated to the protection of nature and biodiversity such as 
+                    <a href ="https://www.iucn.org/" target="_blank" rel="noopener noreferrer">IUCN</a>, 
+                    <a href="https://en.nabu.de/ target="_blank" rel="noopener noreferrer">NABU</a>, 
+                    <a href="https://www.ofb.gouv.fr/en" target="_blank" rel="noopener noreferrer">OFB</a>, 
+                    <a href="https://fundacion-biodiversidad.es/" target="_blank" rel="noopener noreferrer">Biodiversity Foundation</a>, 
+                    <a href="https://www.acdb.ro/" target="_blank" rel="noopener noreferrer">ACDB</a> and 
+                    <a href="https://networknature.eu/ridb" target="_blank" rel="noopener noreferrer">many others</a> in your local area.
                 `;
             }
         });

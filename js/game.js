@@ -139,6 +139,18 @@ function endGame() {
         <p>Level reached: ${gameStats.level}</p>
         <p>Flying skills: ${gameStats.flyingSkills}</p>
     `;
+
+    // Append additional message about supporting nature conservation
+    const supportMessageElement = document.getElementById('supportMessage');
+    supportMessageElement.innerHTML = `
+                    *Skylark and nightingale both need your help as their natural habitats get smaller by the day. If you want to make sure that we all can listen to their unique songs in the future, consider supporting organizations dedicated to the protection of nature and biodiversity such as 
+                    <a href ="https://www.iucn.org/" target="_blank" rel="noopener noreferrer">IUCN</a>, 
+                    <a href="https://en.nabu.de/ target="_blank" rel="noopener noreferrer">NABU</a>, 
+                    <a href="https://www.ofb.gouv.fr/en" target="_blank" rel="noopener noreferrer">OFB</a>, 
+                    <a href="https://fundacion-biodiversidad.es/" target="_blank" rel="noopener noreferrer">Biodiversity Foundation</a>, 
+                    <a href="https://www.acdb.ro/" target="_blank" rel="noopener noreferrer">ACDB</a> and 
+                    <a href="https://networknature.eu/ridb" target="_blank" rel="noopener noreferrer">many others</a> in your local area.
+                `;
 }
 
 
