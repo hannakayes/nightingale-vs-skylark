@@ -44,7 +44,11 @@ function restartGame() {
 
     // Stop any playing sounds
     stopAllSounds();
+
+    // Reload the page to restart the game completely
+    location.reload();
 }
+
 
 function pauseGame() {
     if (gamePaused) {
