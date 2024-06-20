@@ -5,6 +5,7 @@ let startTime = null; // Variable to store the start time
 let skylarkSound = null; // Variable to store skylark sound element
 let obstacleGenerationInterval; // Store interval for obstacle generation
 let obstacleMovementInterval; // Store interval for obstacle movement
+let levelCheckInterval;
 const playingSounds = []; // Array to track currently playing sounds
 
 function showScreen(screenId) {
@@ -14,6 +15,8 @@ function showScreen(screenId) {
     document.getElementById(screenId).style.display = 'flex';
 }
 
+let flyingSkillsInterval; // Variable to store the interval for updating flying skills
+
 function startGame() {
     if (!gameStarted) {
         gameStarted = true;
@@ -22,7 +25,8 @@ function startGame() {
         startObstacleGeneration();
         startTime = new Date(); // Start the timer
         document.getElementById('startButton').textContent = 'RESTART';
-        setInterval(updateFlyingSkills, 1000); // Check every second for flying skills update
+        flyingSkillsInterval = setInterval(updateFlyingSkills, 1000); // Check every second for flying skills update
+        levelCheckInterval = setInterval(checkLevelIncrease, 100); // Check frequently for level increase
     } else {
         restartGame();
     }
@@ -41,6 +45,8 @@ function restartGame() {
     // Stop intervals
     clearInterval(obstacleGenerationInterval);
     clearInterval(obstacleMovementInterval);
+    clearInterval(flyingSkillsInterval); // Clear flying skills interval
+    clearInterval(levelCheckInterval); // Clear level check interval
 
     // Stop any playing sounds
     stopAllSounds();
@@ -49,7 +55,6 @@ function restartGame() {
     location.reload();
 }
 
-
 function pauseGame() {
     if (gamePaused) {
         resumeGame();
@@ -57,6 +62,8 @@ function pauseGame() {
         gamePaused = true;
         clearInterval(obstacleGenerationInterval);
         clearInterval(obstacleMovementInterval);
+        clearInterval(flyingSkillsInterval); // Clear flying skills interval
+        clearInterval(levelCheckInterval); // Clear level check interval
         document.getElementById('pauseButton').textContent = 'RESUME';
 
         // Pause all playing sounds
@@ -67,6 +74,8 @@ function pauseGame() {
 function resumeGame() {
     gamePaused = false;
     startObstacleGeneration();
+    flyingSkillsInterval = setInterval(updateFlyingSkills, 1000); // Resume updating flying skills
+    levelCheckInterval = setInterval(checkLevelIncrease, 100); // Resume level check interval
     document.getElementById('pauseButton').textContent = 'PAUSE';
 
     // Resume all paused sounds
@@ -155,6 +164,11 @@ function endGame() {
                     <a href="https://www.acdb.ro/" target="_blank" rel="noopener noreferrer">ACDB</a> and 
                     <a href="https://networknature.eu/ridb" target="_blank" rel="noopener noreferrer">many others</a> in your local area.
                 `;
+
+    // Clear intervals
+    clearInterval(obstacleGenerationInterval);
+    clearInterval(obstacleMovementInterval);
+    clearInterval(flyingSkillsInterval); // Clear flying skills interval
 }
 
 
@@ -200,15 +214,17 @@ document.addEventListener('keydown', function(event) {
 
 // Function to check if level should be increased
 function checkLevelIncrease() {
+    if (gamePaused) return; // Return if game is paused
     if (arrowClicksSum >= 25) {
         gameStats.incrementLevel(); // Increment level
         arrowClicksSum = 0; // Reset arrow clicks sum
     }
 }
 
+
 // Function to update flying skills based on time elapsed
 function updateFlyingSkills() {
-    if (!startTime) return; // Return if game hasn't started
+    if (!startTime || gamePaused) return; // Return if game hasn't started or is paused
 
     const currentTime = new Date();
     const elapsedTimeInSeconds = (currentTime - startTime) / 1000;

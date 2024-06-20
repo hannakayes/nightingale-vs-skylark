@@ -65,4 +65,3 @@ function startObstacleGeneration() {
         moveObstacles();
     }, 16); // Move obstacles every 16ms
 }
-z
