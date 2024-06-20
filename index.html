@@ -33,11 +33,17 @@
         <h1 class="game-title">Nachtigall,<br>ick hör dir<br>trapsen.</h1>
         <div id="gameArea">
             <img src="images/skylark_standing.png" alt="Skylark" id="skylark">
+            <!-- Four villains: eagle_left, eagle_right, crow_left, crow_right -->
+            <img id="eagle_left" src="images/eagle_left.png" class="villain" data-type="eagle" style="display: none;">
+            <img id="eagle_right" src="images/eagle_right.png" class="villain" data-type="eagle" style="display: none;">
+            <img id="crow_left" src="images/crow_left.png" class="villain" data-type="crow" style="display: none;">
+            <img id="crow_right" src="images/crow_right.png" class="villain" data-type="crow" style="display: none;">
         </div>
         <div id="nightingaleContainer">
             <img src="images/nightingale.png" alt="Nightingale" id="nightingale" onclick="toggleNightingaleSong()">
         </div>
         
+        <!-- Audio elements for game sounds -->
         <audio id="nightingaleAudio">
             <source src="sounds/nightingale_song.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -68,6 +74,7 @@
             Your browser does not support the audio element.
         </audio>
         
+        <!-- Game stats display and pause button -->
         <div id="gameStats">
             <p>Lives left: <span id="singingPoints">3</span></p>
             <p>Level: <span id="level">1</span></p>
@@ -85,13 +92,14 @@
         <div id="supportMessage"></div>
         <button id="restartButton" class="restart-button">RESTART</button>
         
-        <!-- Add the endGameAudio element here -->
+        <!-- End game audio element -->
         <audio id="endGameAudio">
             <source src="sounds/ella_fitzgerald_skylark.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
     </div>
 
+    <!-- JavaScript files for game functionality -->
     <script src="js/player.js"></script>
     <script src="js/obstacle.js"></script>
     <script src="js/game.js"></script>

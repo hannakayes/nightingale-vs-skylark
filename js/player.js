@@ -3,7 +3,7 @@ let isJumping = false;
 let isFlying = false;
 let jumpInterval; // Variable to store interval for jump animation
 let fallInterval; // Variable to store interval for falling animation
-const moveSpeed = 20; // Adjust movement speed here
+const moveSpeed = 40; // Adjust movement speed here
 
 // Audio element for skylark song
 let skylarkSong = document.getElementById('skylarkSong');
@@ -11,6 +11,11 @@ let skylarkSong = document.getElementById('skylarkSong');
 function initializePlayer() {
     skylark = document.getElementById('skylark');
     gameArea = document.getElementById('gameArea');
+
+    // Initialize villains
+    crow = document.getElementById('crow');
+    eagle = document.getElementById('eagle');
+    villains = [crow, eagle];
 
     // Initial positions
     skylarkPosition = { left: skylark.offsetLeft, top: skylark.offsetTop };
@@ -63,7 +68,7 @@ function jumpUp() {
 
     function animateJump() {
         if (skylarkTop > 0 && isJumping) {
-            skylarkTop -= 5; // Adjust jump speed as needed
+            skylarkTop -= 8; // Adjust jump speed as needed (increase to make it faster)
             skylark.style.top = skylarkTop + 'px';
             requestAnimationFrame(animateJump);
         } else {
@@ -109,7 +114,7 @@ function fallDown() {
 
     function animateFall() {
         if (skylarkTop < gameAreaHeight - skylarkHeight && isFlying) {
-            skylarkTop += 5; // Adjust fall speed as needed
+            skylarkTop += 8; // Adjust fall speed as needed (increase to make it faster)
             skylark.style.top = skylarkTop + 'px';
         } else {
             clearInterval(fallInterval); // Stop falling animation when reached bottom or stopped flying
@@ -122,3 +127,4 @@ function fallDown() {
 
     animateFall(); // Initial call to start fall animation
 }
+

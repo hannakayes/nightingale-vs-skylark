@@ -195,7 +195,7 @@ button.pause-button:hover, button.pause-button:active {
     width: 8vw; /* Use viewport units to maintain size relative to screen size */
     left: 2%; /* Adjusted percentage to stay inside #gameArea */
     top: 10%; /* Use viewport units to maintain position relative to screen size */
-    transform: translateY(-50%);
+    transform: translateY(-10%);
 }
 
 #nightingale {
@@ -205,6 +205,13 @@ button.pause-button:hover, button.pause-button:active {
     right: 6vh; /* Use viewport units to maintain position relative to screen size */
     top: 40%; /* Use viewport units to maintain position relative to screen size */
     transform: translateY(-50%);
+}
+
+#crow_left, #crow_right, #eagle_left, #eagle_right {
+    width: 12vw; /* Adjust width as needed */
+    position: absolute; /* Ensure proper positioning within game area */
+    z-index: 10; /* Adjust z-index if necessary to ensure they appear above other elements */
+    /* Add other necessary styles (like background image or colors) */
 }
 
 #gameStats {
